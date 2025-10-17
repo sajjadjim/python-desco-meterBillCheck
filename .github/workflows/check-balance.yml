@@ -2,8 +2,8 @@ name: Daily DESCO Check
 
 on:
   schedule:
-    - cron: "5 2 * * *"    # 02:05 UTC = 08:05 Dhaka (avoid top of hour)
-  workflow_dispatch:        # allow manual run from Actions tab
+    - cron: "10 18 * * *"    # 18:10 UTC = 12:10 AM BDT
+  workflow_dispatch:          # allow manual run from Actions tab
 
 jobs:
   run:
@@ -29,5 +29,6 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          ACCOUNT_NO: ${{ secrets.ACCOUNT_NO }}   # e.g., 500
+          ACCOUNT_NO: ${{ secrets.ACCOUNT_NO }}
+          METER_NO: ${{ secrets.METER_NO }}
         run: python check_balance.py
